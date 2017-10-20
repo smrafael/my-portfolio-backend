@@ -1,3 +1,4 @@
 node_modules/
 *.sqlite
 package.json.lock
+public/apidoc/
