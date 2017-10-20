@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const budgetStatus = require("./budget-status");
+const moment = require("moment");
 
 module.exports = function(sequelize) {
     const Budgets = sequelize.define("Budgets", {
@@ -38,7 +39,18 @@ module.exports = function(sequelize) {
         },
         maxBudget: Sequelize.DECIMAL(10,2),
         deadline: {
-            type: Sequelize.DATEONLY
+            type: Sequelize.DATEONLY,
+            validate: {
+                isDate: true
+            },
+            get() {
+                const deadline = this.getDataValue("deadline");
+                return moment(deadline).format("DD/MM/YYYY");
+            },
+            set(val) {
+                const deadline = moment(val, "DD-MM-YYYY")
+                this.setDataValue("deadline", deadline);
+            }
         },
         restrictions: {
             type: Sequelize.STRING,

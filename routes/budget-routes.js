@@ -21,7 +21,7 @@ module.exports = function(app) {
                 res.json(result);
             })
             .catch(function(err) {
-                res.status(412).json({msg: error.message});
+                res.status(412).json({msg: err.message});
             });
     });
 
@@ -35,7 +35,7 @@ module.exports = function(app) {
                 }
             })
             .catch(function(err) {
-                res.status(412).json({msg: error.message});
+                res.status(412).json({msg: err.message});
             });
     });
 
@@ -48,14 +48,14 @@ module.exports = function(app) {
                             res.sendStatus(204);
                         })
                         .catch(function(err) {
-                            res.status(412).json({msg: error.message});
+                            res.status(412).json({msg: err.message});
                         });
                 } else {
                     res.sendStatus(404);
                 }
             })
             .catch(function(err) {
-                res.status(412).json({msg: error.message});
+                res.status(412).json({msg: err.message});
             });
     }
 
