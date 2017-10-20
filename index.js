@@ -1,4 +1,5 @@
 const express = require("express");
+const process = require("process");
 
 const app = express();
 const PORT = 8080;
@@ -17,7 +18,8 @@ routes(app);
 
 // Inicia o servidor de banco de dados e HTTP (8080)
 app.db.sequelize.sync().then(function() {
-    app.listen(PORT, function() {
-        console.log("My Portfolio backend running - port " + PORT);
+    app.listen(process.env.PORT || PORT, function() {
+        const port = process.env.PORT || PORT;
+        console.log("My Portfolio backend running - port " + port);
     });
 });
